@@ -25,6 +25,8 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.util.UrlPathHelper;
 
+import edu.mum.interceptor.AuthorizationInterceptor;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("edu.mum")
@@ -100,7 +102,7 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter{
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver resolver = new SessionLocaleResolver();
 		resolver.setDefaultLocale(new Locale("en"));
-		return resolver;
+		return (LocaleResolver) resolver;
 	}
 
 	@Bean(name = "validator")
